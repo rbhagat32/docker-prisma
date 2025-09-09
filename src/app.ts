@@ -1,8 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import { userRouter } from "@/routes/user.js";
 import { errorHandler } from "@/middlewares/error-handler.js";
+import { userRouter } from "@/routes/user.js";
+import { postRouter } from "@/routes/post.js";
 
 const app = express();
 dotenv.config({ path: ".env" });
@@ -12,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: [`${process.env.FRONTEND_URL_DEV}`, `${process.env.FRONTEND_URL_PROD}`],
+    origin: [`${process.env.FRONTEND_URL}`],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
@@ -20,6 +21,7 @@ app.use(
 
 // routes
 app.use("/api/user", userRouter);
+app.use("/api/post", postRouter);
 
 // custom error handler
 app.use(errorHandler);

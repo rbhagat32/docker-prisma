@@ -1,10 +1,10 @@
 import type { Request, Response } from "express";
 import { tryCatch } from "@/utils/try-catch.js";
 import { ErrorHandler } from "@/middlewares/error-handler.js";
-import { prisma } from "@/config/prisma";
+import { prisma } from "@/config/prisma.js";
 
 const getAllUsers = tryCatch(async (_req: Request, res: Response) => {
-  const users = await prisma.user.findMany();
+  const users = await prisma.user.findMany({});
   return res.status(200).json(users);
 });
 
@@ -13,7 +13,10 @@ const getUser = tryCatch(async (req: Request, res: Response) => {
 
   const user = await prisma.user.findUnique({
     where: {
-      id: id,
+      id,
+    },
+    include: {
+      posts: true,
     },
   });
 

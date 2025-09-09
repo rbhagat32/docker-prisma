@@ -20,21 +20,21 @@ DATABASE_URL="your_database_url"
 
 4. Define your data model in the `prisma/schema.prisma` file:
 
-```prisma
-generator client {
-  provider = "prisma-client-js"
-}
+```
+  generator client {
+    provider = "prisma-client-js"
+  }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
+  datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+  }
 
-model User {
-  id    String @id @default(uuid())
-  email String @unique
-  name  String
-}
+  model User {
+    id    String @id @default(uuid())
+    email String @unique
+    name  String
+  }
 ```
 
 5. Run the following command to create the database and generate the Prisma Client:

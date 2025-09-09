@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient({
-  log: ["error", "query"],
+  log: ["query", "info", "warn", "error"],
 });
 
 process.on("beforeExit", async () => {

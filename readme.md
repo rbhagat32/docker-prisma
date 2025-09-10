@@ -1,4 +1,4 @@
-## Steps to use Prisma
+# Steps to use Prisma
 
 1. Install Prisma CLI as a dev dependency:
 
@@ -15,26 +15,26 @@ npx prisma init --datasource-provider postgresql
 3. Configure your database connection in the `.env` file:
 
 ```env
-DATABASE_URL="your_database_url"
+DATABASE_URL=<your_database_url>
 ```
 
 4. Define your data model in the `prisma/schema.prisma` file:
 
 ```
-  generator client {
-    provider = "prisma-client-js"
-  }
+generator client {
+  provider = "prisma-client-js"
+}
 
-  datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
-  }
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
 
-  model User {
-    id    String @id @default(uuid())
-    email String @unique
-    name  String
-  }
+model User {
+  id    String @id @default(uuid())
+  email String @unique
+  name  String
+}
 ```
 
 5. Run the following command to create the database and generate the Prisma Client:

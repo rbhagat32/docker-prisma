@@ -1,7 +1,7 @@
 services:
-  postgres:
-    image: postgres
+  postgres-service:
     container_name: pg
+    image: postgres
     environment:
       POSTGRES_USER: raghav
       POSTGRES_PASSWORD: password
@@ -9,15 +9,26 @@ services:
     volumes:
       - pg-data:/var/lib/postgresql/data
 
-  backend:
-    build: .
+  backend-service:
     container_name: backend
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     depends_on:
-      - postgres
+      - postgres-service
     ports:
       - "4000:4000"
     env_file:
       - .env
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app
+          ignore: "node_modules"
+        - action: rebuild
+          path: package*.json
+
 
 volumes:
   pg-data:

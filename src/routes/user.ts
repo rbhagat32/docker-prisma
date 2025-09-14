@@ -10,4 +10,4 @@ router
   .put("/:id", updateUser)
   .delete("/:id", deleteUser);
 
-export { router as userRouter };
+export { router as UserRouter };

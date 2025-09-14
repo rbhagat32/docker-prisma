@@ -1,9 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import { errorHandler } from "@/middlewares/error-handler.js";
-import { userRouter } from "@/routes/user.js";
-import { postRouter } from "@/routes/post.js";
+import { ErrorHandlerMiddleware } from "@/middlewares/error-handler.js";
+import { UserRouter } from "@/routes/user.js";
+import { PostRouter } from "@/routes/post.js";
 
 const app = express();
 dotenv.config({ path: ".env" });
@@ -20,11 +20,11 @@ app.use(
 );
 
 // routes
-app.use("/api/user", userRouter);
-app.use("/api/post", postRouter);
+app.use("/api/user", UserRouter);
+app.use("/api/post", PostRouter);
 
 // custom error handler
-app.use(errorHandler);
+app.use(ErrorHandlerMiddleware);
 
 const PORT = Number(process.env.PORT) || 4000;
 app.listen(PORT, () => {

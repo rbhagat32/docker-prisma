@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "private": true,
-  "description": "This app was created using `npx create-types-backend@latest`",
+  "description": "Prisma, PostgreSQL, Docker",
   "type": "module",
   "main": "dist/app.js",
   "scripts": {
@@ -10,7 +10,8 @@
     "build": "npm run lint && tsc && tsc-alias",
     "dev": "nodemon",
     "lint": "eslint src",
-    "docker": "docker compose up -d && docker compose watch"
+    "up": "docker compose up --watch",
+    "down": "docker compose down --rmi local --remove-orphans && docker image prune -f"
   },
   "keywords": [],
   "author": "",

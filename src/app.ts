@@ -6,7 +6,7 @@ import { UserRouter } from "@/routes/user.js";
 import { PostRouter } from "@/routes/post.js";
 
 const app = express();
-dotenv.config({ path: ".env" });
+dotenv.config({ path: ".env", quiet: true });
 
 // middlewares
 app.use(express.json());

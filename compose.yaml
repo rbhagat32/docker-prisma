@@ -25,10 +25,12 @@ services:
         - action: sync
           path: .
           target: /app
-          ignore: "node_modules"
+          ignore:
+            - node_modules/
         - action: rebuild
-          path: package*.json
-
+          path: package.json
+        - action: rebuild
+          path: prisma/schema.prisma
 
 volumes:
   pg-data:

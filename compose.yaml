@@ -12,7 +12,7 @@ services:
   backend-service:
     container_name: backend
     build:
-      context: .
+      context: ./
       dockerfile: Dockerfile.dev
     depends_on:
       - postgres-service

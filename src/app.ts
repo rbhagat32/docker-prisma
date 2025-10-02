@@ -1,12 +1,12 @@
 import express from "express";
-import dotenv from "dotenv";
+import { configDotenv } from "dotenv";
 import cors from "cors";
 import { ErrorHandlerMiddleware } from "@/middlewares/error-handler.js";
 import { UserRouter } from "@/routes/user.js";
 import { PostRouter } from "@/routes/post.js";
 
 const app = express();
-dotenv.config({ path: ".env", quiet: true });
+configDotenv({ path: ".env", quiet: true });
 
 // middlewares
 app.use(express.json());

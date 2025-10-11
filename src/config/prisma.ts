@@ -7,10 +7,10 @@ const prisma = new PrismaClient({
 prisma
   .$connect()
   .then(() => {
-    console.log("Connected to Postgres !");
+    console.log("Connected to PostgreSQL !");
   })
   .catch((e) => {
-    console.error("Error connecting to Postgres", e);
+    console.error("Error connecting to PostgreSQL", e);
     process.exit(1);
   });
 

@@ -1,24 +1,18 @@
 # Steps to use Prisma
 
-1. Install Prisma CLI as a dev dependency:
-
-```bash
-npm install prisma --save-dev
-```
-
-2. Initialize Prisma in your project:
+1. Initialize Prisma in your project:
 
 ```bash
 npx prisma init --datasource-provider postgresql
 ```
 
-3. Configure your database connection in the `.env` file:
+2. Configure your database connection in the `.env` file:
 
 ```env
 DATABASE_URL=<your_database_url>
 ```
 
-4. Define your data model in the `prisma/schema.prisma` file:
+3. Define your data model in the `prisma/schema.prisma` file:
 
 ```
 generator client {
@@ -37,7 +31,13 @@ model User {
 }
 ```
 
-5. Run the following command to create the database and generate the Prisma Client:
+4. Run the following command to generate the Prisma Client:
+
+```bash
+npx prisma generate
+```
+
+5. Run the following command to create Database migration:
 
 ```bash
 npx prisma migrate dev --name init
@@ -51,6 +51,16 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient({
   log: ["query", "info", "warn", "error"],
 });
+
+prisma
+  .$connect()
+  .then(() => {
+    console.log("Connected to PostgreSQL !");
+  })
+  .catch((e) => {
+    console.error("Error connecting to PostgreSQL", e);
+    process.exit(1);
+  });
 
 export { prisma };
 ```

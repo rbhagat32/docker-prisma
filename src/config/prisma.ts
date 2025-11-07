@@ -9,8 +9,8 @@ prisma
   .then(() => {
     console.log("Connected to PostgreSQL !");
   })
-  .catch((e) => {
-    console.error("Error connecting to PostgreSQL", e);
+  .catch((e: Error) => {
+    console.error("Error connecting to PostgreSQL: ", e);
     process.exit(1);
   });
 
